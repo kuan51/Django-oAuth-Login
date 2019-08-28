@@ -1,0 +1,65 @@
+<!-- templates/home.html -->
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load i18n %}
+{% block head_title %}{% trans "DJ Cal - Sign In" %}{% endblock %}
+
+{% block styles %}
+  <!-- Custom CSS here: (sign-in.css breaks the display of the login page.) -->
+  {% load static from staticfiles %}
+  <link rel="stylesheet" href="{% static 'pages/sign-in.css' %}">
+  <link rel="stylesheet" href="{% static 'pages/img.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid full">
+    <div class="row align-items-center h-100 login-margins">
+        <div class="col-sm-4 mx-auto bg-dark rounded text-center w-100 p-3 text-light text-center">
+          <h1>Django oAuth Login</h1>
+          {% if user.is_authenticated %}
+          <p>Welcome {{ user.username }} !!!</p>
+          <p><a class="btn btn-primary btn-padding" href="{% url 'account_logout' %}">Log out</a>
+          {% else %}
+          <div class="btn-group" role="group" aria-label="Login ands sign up buttons.">
+            <p><a class="btn btn-primary btn-padding m-1" href="{% url 'account_login' %}">Log In </a></p>
+            <p><a class="btn btn-secondary btn-padding m-1" href="{% url 'account_signup' %}">Sign Up</a></p>
+          </div>
+          <div class="w-100 d-block">
+            <!-- oAuth SSO Providers -->
+            <p>Or sign in with a 3rd party account: </p>
+            {% get_providers as socialaccount_providers %}
+            <ul class="list-unstyled list-inline mx-auto" style="width: 25em;">
+              <li class="list-inline-item">
+                <a href="{% provider_login_url "github" %}"><img width="32" alt="Font Awesome 5 brands github" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Font_Awesome_5_brands_github.svg/32px-Font_Awesome_5_brands_github.svg.png"></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{% provider_login_url "google" %}"><img width="32" alt="Google &quot;G&quot; Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/32px-Google_%22G%22_Logo.svg.png"></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{% provider_login_url "linkedin_oauth2" %}"><img width="32" alt="Linkedin icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Linkedin_icon.svg/256px-Linkedin_icon.svg.png"></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{% provider_login_url "discord" %}"><img width="23" alt="Discord color D" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Discord_color_D.svg/64px-Discord_color_D.svg.png"></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{% provider_login_url "slack" %}"><img width="32" alt="Slack Icon" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png"></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{% provider_login_url "amazon" %}"><img width="32" alt="Amazon icon" src="https://upload.wikimedia.org/wikipedia/commons/d/de/Amazon_icon.png"></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{% provider_login_url "paypal" %}"><img width="26" alt="PayPal Logo Icon 2014" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/PayPal_Logo_Icon_2014.svg/16px-PayPal_Logo_Icon_2014.svg.png"></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{% provider_login_url "reddit" %}"><img width="32" alt="Reddit logo orange" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Reddit_logo_orange.svg/512px-Reddit_logo_orange.svg.png"></a>
+              </li>
+            </ul>
+          </div>
+          {% include "socialaccount/snippets/login_extra.html" %}
+          {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

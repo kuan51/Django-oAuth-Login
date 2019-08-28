@@ -1,0 +1,17 @@
+<!-- templates/signup.html -->
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "DJ Cal - Sign In" %}{% endblock %}
+
+{% block content %}
+
+<h2>Sign up</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Sign up</button>
+</form>
+
+{% endblock %}
