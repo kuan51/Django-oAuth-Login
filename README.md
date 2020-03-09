@@ -7,7 +7,7 @@
  2. Create a python3 virtual environment: `python3 -m venv [name_of_your_virtual_environment]`
  3. Install dependencies: `pip install -r requirements.txt`
  4. Migrate databases and applications: `python ./manage.py migrate`
- 5. Sync databases: `python ./manage.py --run-syncdb`
+ 5. Sync databases: `python ./manage.py migrate --run-syncdb`
  6. Create admin user: `python ./manage.py createsuperuser`
  7. Run server: `python ./manage.py runserver`
  8. Browse to `localhost:8000` and login with the username and password from step 6.
