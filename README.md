@@ -1,5 +1,5 @@
-# owl-analyzer
- Manage social media accounts from a single web app.
+# Django oAuth Template
+ An example of how to create a Django web app with SSO support using oAuth.
 
  ## Installation
 
